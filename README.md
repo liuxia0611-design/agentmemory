@@ -1047,6 +1047,27 @@ Create `~/.agentmemory/.env`:
 # GEMINI_API_KEY=...
 # OPENROUTER_API_KEY=...
 # MINIMAX_API_KEY=...
+# OPENAI_API_KEY=***                       # NOTE: this same key auto-activates BOTH the
+#                                          # OpenAI LLM provider (here) AND the OpenAI
+#                                          # embedding provider (further below). Set
+#                                          # OPENAI_API_KEY_FOR_LLM=false to scope it
+#                                          # to embeddings only.
+# OPENAI_BASE_URL=https://api.openai.com   # Optional: override for Azure / vLLM / LM Studio / proxies
+#                                          # Azure: https://<resource>.openai.azure.com/openai/deployments/<deployment>
+#                                          # Auto-detected from `.openai.azure.com` hostname; uses
+#                                          # api-key header + api-version query param.
+# OPENAI_API_VERSION=2024-08-01-preview    # Optional: Azure api-version query param
+# OPENAI_MODEL=gpt-4o-mini                 # Optional: default model
+# OPENAI_TIMEOUT_MS=60000                  # Optional: outbound fetch timeout (default 60s)
+# OPENAI_REASONING_EFFORT=none             # Optional: "low" | "medium" | "high" | "none"
+#                                          # Honored only by OpenAI's reasoning models (o1, o3,
+#                                          # gpt-*-reasoning) and providers that mirror that
+#                                          # schema (Ollama Cloud thinking models). Standard
+#                                          # chat models reject this field with 400. Set to
+#                                          # "none" for thinking models that return reasoning
+#                                          # but no content.
+# OPENAI_API_KEY_FOR_LLM=false             # Optional: set to false to skip OpenAI auto-detection
+#                                          # for LLM (useful if you only want OpenAI for embeddings)
 # Opt-in Claude-subscription fallback (spawns @anthropic-ai/claude-agent-sdk);
 # leave OFF unless you understand the Stop-hook recursion risk (#149 follow-up):
 # AGENTMEMORY_ALLOW_AGENT_SDK=true
